@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>hello world</title>
@@ -9,5 +10,6 @@
     <a href="/list">list</a>
     <a href="/form">form</a>
     <a href="/detail">detail</a>
+    <span th:text="${msg}">before print</span>
 </body>
 </html>

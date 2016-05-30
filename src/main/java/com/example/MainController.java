@@ -2,6 +2,7 @@ package com.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -16,14 +17,19 @@ public class MainController {
     BoardService boardService;
 
     @RequestMapping(value = "/")
-    public String index() {
+    public String index(Model model) {
+
         Board b = new Board();
-        b.setContents("나는 누구인가...");
+        b.setContent("내용입니다.");
+        b.setTitle("제목입니다.");
         b.setWriter("글쓴이");
         boardService.save(b);
+
         List<Board> list = boardService.findAll();
 
         list.forEach(name-> System.out.println(name.getWriter()));
+
+        model.addAttribute("msg", "this is after print ...");
 
         return "index";
     }

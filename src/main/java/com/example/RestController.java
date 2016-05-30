@@ -26,7 +26,7 @@ public class RestController {
         try {
             Board b = new Board();
             b.setWriter(request.getParameter("w"));
-            b.setContents(request.getParameter("c"));
+            b.setContent(request.getParameter("c"));
             boardService.save(b);
         } catch (Exception e ) {
 
