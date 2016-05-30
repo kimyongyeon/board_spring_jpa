@@ -10,9 +10,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Filename : FixturesProperty.java
@@ -24,15 +22,9 @@ import java.util.Map;
 @ConfigurationProperties(locations = {"fixtures.yml"}, prefix = "fixtures")
 public class FixturesProperty {
     @NestedConfigurationProperty
-    private List<Map> articles = new ArrayList<>();
+    private List<Article> articles = new ArrayList<>();
 
-    FixturesProperty() {
-        Map<String, String> m = new HashMap<>();
-        m.put("1", "ya");
-        articles.add(m);
-    }
-
-    public List<Map> getArticles() {
+    public List<Article> getArticles() {
         return articles;
     }
 }
