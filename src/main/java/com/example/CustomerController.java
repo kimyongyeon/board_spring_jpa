@@ -24,11 +24,6 @@ public class CustomerController {
     @RequestMapping(method = RequestMethod.GET)
     String list(Model model) {
         List<Customer> customers = customerService.findAll();
-        Customer c = new Customer("kim", "yeon");
-        c.setFirstName("kimyongyeon");
-        c.setLastName("yongyone");
-        c.setId(1);
-        customers.add(c);
         model.addAttribute("customers", customers);
         return "/customers/list";
     }

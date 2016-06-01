@@ -62,7 +62,7 @@ dependencies {
 
 	// Tests
 	testCompile "org.springframework.boot:spring-boot-starter-test"
-	testCompile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+	///testCompile "org.codehaus.groovy:groovy-all:${groovyVersion}"
 	testCompile "org.spockframework:spock-spring"
 	testCompile "junit:junit"
 
