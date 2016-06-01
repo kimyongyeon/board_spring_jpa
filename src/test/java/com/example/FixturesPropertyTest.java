@@ -32,6 +32,7 @@ public class FixturesPropertyTest {
         Article article = articles.get(0);
         List<Comment> comments = article.getComments();
         assertThat(comments.size(), is(2));
+
     }
 
 }

@@ -46,6 +46,10 @@ repositories {
 	jcenter()
 }
 
+run{
+	standardInput = System.in
+}
+
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')

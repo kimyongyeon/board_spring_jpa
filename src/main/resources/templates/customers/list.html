@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/css/style.css" />
+
+    <title>board list</title>
+</head>
+<body>
+<h1>customers list 출력</h1>
+<a href="/">index</a>
+
+<table>
+    <tr>
+        <td>번호</td>
+        <td>이름</td>
+        <td>성</td>
+        <td>버튼1</td>
+        <td>버튼2</td>
+    </tr>
+    <tr th:each="customer : ${customers}">
+        <td th:text="${customer.id}">100</td>
+        <td th:text="${customer.lastName}">길동</td>
+        <td th:text="${customer.firstName}">홍</td>
+        <td>
+            <form action="" th:action="@{/customer/edit}" method="get">
+                <input type="submit" name="form" value="편집" />
+                <input type="hidden" name="id" th:value="${customer.id}" />
+            </form>
+        </td>
+        <td>
+            <form action="" th:action="@{/customer/delete}" method="post">
+                <input type="submit" value="삭제" />
+            </form>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(document).ready(function(){
+        //alert("one");
+    });
+</script>
+</body>
+</html>

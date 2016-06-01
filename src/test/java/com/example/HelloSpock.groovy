@@ -7,4 +7,5 @@ class HelloSpock {
     String sayHello(String name){
         return "Hello " + name
     }
+
 }

@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8" />
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
@@ -20,8 +22,8 @@
             <td>글쓴이</td>
             <td>조회수</td>
         </tr>
-        <tr>
-            <td>1</td>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}">1</td>
             <td>제목입니다</td>
             <td>운영자</td>
             <td>1223</td>

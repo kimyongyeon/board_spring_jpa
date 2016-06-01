@@ -4,6 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <title>hello world</title>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/bower_components/jstree/dist/jstree.min.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/jstree/dist/themes/default/style.min.css" />
 </head>
 <body>
     <h1>Hello world </h1>
@@ -11,5 +16,105 @@
     <a href="/form">form</a>
     <a href="/detail">detail</a>
     <span th:text="${msg}">before print</span>
+
+
+    <form id="s">
+        <input type="search" id="q" />
+        <button type="submit">Search</button>
+    </form>
+    <div id="container">
+        <ul>
+            <li>Root node
+                <ul>
+                    <li>Child node 1</li>
+                    <li>Child node 2</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+
+
+
+    <script>
+        // https://github.com/vakata/jstree#include-all-neccessary-files
+//        $(function() {
+//            $('#container').jstree();
+//        });
+//        $(function() {
+//            $('#container').jstree({
+//                'core' : {
+//                    'data' : [
+//                        { "text" : "Root node", "children" : [
+//                            { "text" : "Child node 1", "children" : [{"text" : "child node 1-1"}] },
+//                            { "text" : "Child node 2" },
+//                            { "text" : "Child node 3" },
+//                            { "text" : "Child node 4" }
+//                        ]
+//                        }
+//                    ]
+//                }
+//            });
+//        });
+//$(function() {
+//    $("#s").submit(function(e) {
+//        e.preventDefault();
+//        $("#container").jstree(true).search($("#q").val());
+//    });
+//
+    $('#container').jstree({
+        "plugins" : ["checkbox","search"],
+        'core' : {
+            'data' : [
+                        { "text" : "Root node", "children" : [
+                            { "text" : "Child node 1", "children" : [{"text" : "child node 1-1"}] },
+                            { "text" : "Child node 2" },
+                            { "text" : "Child node 3" },
+                            { "text" : "Child node 4" }
+                        ]
+                    }
+                ]
+//            'data' : [
+//                {
+//                    "text" : "Root node",
+//                    "state" : {"opened" : true },
+//                    "children" : [
+//                        {
+//                            "text" : "Child node 1",
+//                            "state" : { "selected" : true },
+//                            "icon" : "glyphicon glyphicon-flash"
+//                        },
+//                        { "text" : "Child node 2", "state" : { "disabled" : true } }
+//                    ]
+//                }
+//            ]
+        }
+    });
+//
+////    $('#container').on("changed.jstree", function (e, data) {
+////        console.log("The selected nodes are:");
+////        console.log(data.selected);
+////    });
+//
+//    $('#container').on("changed.jstree", function (e, data) {
+//        console.log(data.instance.get_selected(true)[0].text);
+//        console.log(data.instance.get_node(data.selected[0]).text);
+//    });
+//
+//});
+//
+////$(function() {
+////    $('#container').jstree({
+////        'core' : {
+////            'data' : {
+////                "url" : "//www.jstree.com/fiddle/",
+////                "dataType" : "json" // needed only if you do not supply JSON headers
+////            }
+////        }
+////    });
+////});
+    </script>
+
+
 </body>
 </html>
