@@ -1,5 +1,8 @@
 package com.example;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Table;
 
@@ -11,6 +14,9 @@ import javax.persistence.Id;
 /**
  * Created by yongyeonkim on 2016. 5. 30..
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @javax.persistence.Table(name = "customers")
 public class Customer {
@@ -28,27 +34,4 @@ public class Customer {
     @Column(nullable = false)
     private String lastName;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }

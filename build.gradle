@@ -54,13 +54,11 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.projectlombok:lombok:1.16.8')
 
 	optional("org.springframework.boot:spring-boot-configuration-processor")
 
 	runtime('com.h2database:h2')
-
-//	testCompile('org.springframework.boot:spring-boot-starter-test')
-//	testCompile('org.spockframework:spock-core:0.7-groovy-2.0')
 
 	// Tests
 	testCompile "org.springframework.boot:spring-boot-starter-test"
