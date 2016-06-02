@@ -32,6 +32,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'groovy'
 apply plugin: 'propdeps'
 apply plugin: 'propdeps-idea'
+apply plugin: 'application' // file upload use
 
 jar {
 	baseName = 'board_spring_jpa_study'

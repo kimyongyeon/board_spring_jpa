@@ -22,6 +22,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import javax.sql.DataSource;
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -30,6 +31,15 @@ import java.sql.SQLException;
  */
 @SpringBootApplication
 public class BoardSpringJpaStudyApplication extends SpringBootServletInitializer implements CommandLineRunner  {
+
+	public static String ROOT = "upload-dir";
+
+	@Bean
+	CommandLineRunner init() {
+		return (String[] args) -> {
+			new File(ROOT).mkdir();
+		};
+	}
 
 	@Autowired
 	CustomerRepository customerRepository;

@@ -25,25 +25,41 @@ public class CustomerRestController {
     @Autowired
     CustomerService customerService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    List<Customer> getCustomers() {
-        List<Customer> customers = customerService.findAll();
-        return customers;
-    }
+    // 페이징 없는 거
+//    @RequestMapping(method = RequestMethod.GET)
+//    List<Customer> getCustomers() {
+//        List<Customer> customers = customerService.findAll();
+//        return customers;
+//    }
 
+    /**
+     * 고객 관리 목록 조회 : 페이징 처리 까지...
+     * @param pageable
+     * @return
+     */
     @RequestMapping(method = RequestMethod.GET)
     Page<Customer> getCustomers(@PageableDefault Pageable pageable) {
         Page<Customer> customers = customerService.findAll(pageable);
         return customers;
     }
 
+    /**
+     * 고객 관리 상세조회
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     Customer getCustomer(@PathVariable Integer id) {
         Customer customer = customerService.findOne(id);
         return customer;
     }
 
-    // 신규 고객 작성
+    /**
+     * 신규 고객 작성
+     * @param customer
+     * @param uriBuilder
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<Customer> postCustomers(@RequestBody Customer customer, UriComponentsBuilder uriBuilder) {
@@ -55,14 +71,22 @@ public class CustomerRestController {
         return new ResponseEntity<Customer>(created, headers, HttpStatus.CREATED);
     }
 
-    // 고객 한명의 정보 업데이트
+    /**
+     * 고객 한명의 정보 업데이트
+     * @param id
+     * @param customer
+     * @return
+     */
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     Customer putCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
         customer.setId(id);
         return customerService.update(customer);
     }
 
-    // 고객 한 명의 정보 삭제
+    /**
+     * 고객 한명의 정보 삭제
+     * @param id
+     */
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteCustomer(@PathVariable Integer id) {

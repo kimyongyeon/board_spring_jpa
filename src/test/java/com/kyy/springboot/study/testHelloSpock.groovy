@@ -18,4 +18,5 @@ class testHelloSpock extends Specification{
         expected == "Hello world"
 
     }
+
 }
