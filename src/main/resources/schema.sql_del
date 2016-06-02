@@ -1,0 +1,1 @@
+-- create table if not exists customers (id int PRIMARY KEY auto_increment, first_name varchar(30), last_name VARCHAR(30));
