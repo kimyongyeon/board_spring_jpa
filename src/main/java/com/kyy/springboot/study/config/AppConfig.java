@@ -19,6 +19,8 @@ public class AppConfig {
     DataSourceProperties dataSourceProperties;
     DataSource dataSource;
 
+
+
     @Bean
     DataSource realDataSource() {
         DataSourceBuilder factory = DataSourceBuilder.create(this.dataSourceProperties.getClassLoader())
@@ -34,4 +36,6 @@ public class AppConfig {
     DataSource dataSource() {
         return new Log4jdbcProxyDataSource(this.dataSource);
     }
+
+
 }

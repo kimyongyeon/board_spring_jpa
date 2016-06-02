@@ -1,0 +1,14 @@
+spring:
+
+ datasource:
+   driverClassName: org.h2.Driver
+   url: jdbc:h2:file:/tmp/testdb
+   username: sa
+   password:
+   sql-script-encoding: UTF-8
+
+ thymeleaf:
+   cache: false
+
+server:
+  port: 8081

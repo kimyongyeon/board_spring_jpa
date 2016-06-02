@@ -16,12 +16,12 @@ import javax.persistence.*;
 public class Customer {
 
     @Id // 기본키
-    @GeneratedValue // DB가 기본 키 번호를 자동으로 매기도록 하기 위함
-    private Integer id = 0;
+    @GeneratedValue(strategy = GenerationType.AUTO) // DB가 기본 키 번호를 자동으로 매기도록 하기 위함
+    private Integer id;
     @Column(nullable = false) // not null 제약사항 설정
-    private String firstName= "";
+    private String firstName;
     @Column(nullable = false)
-    private String lastName = "";
+    private String lastName;
 
 
 }
