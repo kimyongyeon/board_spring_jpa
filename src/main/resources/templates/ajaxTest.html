@@ -1,0 +1,54 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>의안 정보 목록</title>
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/bower_components/css/style.css"/>
+
+</head>
+<body>
+<div class="content">
+    <h1>의안 정보 목록</h1>
+    <table class="table table-striped">
+        <tr>
+            <td>의안번호</td>
+            <td>의안명</td>
+            <td>제안자구분</td>
+            <td>제안일</td>
+            <td>회부일</td>
+            <td>소관위원회</td>
+            <!--<td>의결일자</td>-->
+            <!--<td>의결결과</td>-->
+        </tr>
+        <tr th:each="bill : ${billList}">
+            <td th:text="${bill.billNo}">의안번호</td>
+            <td th:text="${bill.billName}">의안명</td>
+            <td th:text="${bill.proposerKind}">제안자구분</td>
+            <td th:text="${bill.proposeDt}">제안일</td>
+            <td>회부일</td>
+            <td>소관위원회</td>
+            <!--<td th:text="${bill.procDt}">의결일자</td>-->
+            <!--<td th:text="${bill.generalResult}">의결결과</td>-->
+        </tr>
+    </table>
+
+    <ul class="pagination" style="align-content: center">
+        <li><a href="/ajaxTest?pageNo=1">1</a></li>
+        <li><a href="/ajaxTest?pageNo=2">2</a></li>
+        <li><a href="/ajaxTest?pageNo=3">3</a></li>
+        <li><a href="/ajaxTest?pageNo=4">4</a></li>
+        <li><a href="/ajaxTest?pageNo=5">5</a></li>
+        <li><a href="/ajaxTest?pageNo=6">6</a></li>
+        <li><a href="/ajaxTest?pageNo=7">7</a></li>
+        <li><a href="/ajaxTest?pageNo=8">8</a></li>
+        <li><a href="/ajaxTest?pageNo=9">9</a></li>
+        <li><a href="/ajaxTest?pageNo=10">10</a></li>
+    </ul>
+
+</div>
+</body>
+</html>
