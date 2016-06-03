@@ -2,29 +2,18 @@ package com.kyy.springboot.study;
 
 import com.kyy.springboot.study.domain.Customer;
 import com.kyy.springboot.study.service.repository.CustomerRepository;
-import net.sf.log4jdbc.Log4jdbcProxyDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
-import javax.sql.DataSource;
 import java.io.File;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * 프로그램 엔트리 포인트 처음 진입점
@@ -32,10 +21,18 @@ import java.sql.SQLException;
 @SpringBootApplication
 public class BoardSpringJpaStudyApplication extends SpringBootServletInitializer implements CommandLineRunner  {
 
-	public static String ROOT = "/Users/yongyeonkim/upload-dir";
+	public static String ROOT;
 
 	@Bean
 	CommandLineRunner init() {
+
+		String osName = System.getProperty("os.name");
+		if(osName.contains("Windows")) {
+			ROOT = "C:" + "/upload-dir";
+		} else {
+			ROOT = "/Users/yongyeonkim/upload-dir";
+		}
+
 		return (String[] args) -> {
 			new File(ROOT).mkdir();
 		};
