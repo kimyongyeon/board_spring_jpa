@@ -32,7 +32,7 @@ import java.sql.SQLException;
 @SpringBootApplication
 public class BoardSpringJpaStudyApplication extends SpringBootServletInitializer implements CommandLineRunner  {
 
-	public static String ROOT = "upload-dir";
+	public static String ROOT = "/Users/yongyeonkim/upload-dir";
 
 	@Bean
 	CommandLineRunner init() {
