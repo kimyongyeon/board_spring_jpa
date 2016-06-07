@@ -22,6 +22,12 @@ public class BoardController {
     @Autowired
     BoardRepository boardRepository;
 
+    /**
+     * 입력화면 전환
+     * @param board
+     * @param model
+     * @throws Exception
+     */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public void regsiterGET(Board board, Model model) throws Exception {
         logger.info("register get....");
