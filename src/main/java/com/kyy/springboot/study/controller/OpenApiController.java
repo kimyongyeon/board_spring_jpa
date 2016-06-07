@@ -26,21 +26,28 @@ import java.util.List;
 public class OpenApiController {
 
     @Data
-    class BillContent {
-        String billId;
-        String billName;
-        String billNo;
-        String passGubn;
-        String procStageCd;
-        String proposeDt;
-        String proposerKind;
-        String summary;
-        String generalResult;
-        String procDt;
+    static class BillContent {
+        private String billId;
+        private String billName;
+        private String billNo;
+        private String passGubn;
+        private String procStageCd;
+        private String proposeDt;
+        private String proposerKind;
+        private String summary;
+        private String generalResult;
+        private String procDt;
     }
 
+    /**
+     * 국회 의회 목록
+     * @param model
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/ajaxTest", method = RequestMethod.GET)
-    public String getOpenApi(Model model, HttpServletRequest request) throws Exception{
+    public String getOpenApi(final Model model, HttpServletRequest request) throws Exception{
 
         String pageNo = request.getParameter("pageNo");
 
