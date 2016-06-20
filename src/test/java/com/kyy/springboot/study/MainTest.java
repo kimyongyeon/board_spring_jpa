@@ -2,7 +2,10 @@ package com.kyy.springboot.study;
 
 import com.kyy.springboot.study.domain.People;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,14 +18,24 @@ import static org.codehaus.groovy.runtime.DefaultGroovyMethods.collect;
  */
 public class MainTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        // file read
+        System.out.println(
+        Files.lines(Paths.get("/tmp/test.txt")).map(line -> line.split("[\\s]+"))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList())
+        );
+
 
         List<People> peoples = new ArrayList<>();
         peoples.add(new People("roka", 29, People.PeopleSex.MALE));
         peoples.add(new People("bob", 29, People.PeopleSex.MALE));
         peoples.add(new People("jessy", 29, People.PeopleSex.FEMALE));
         peoples.add(new People("katy", 29, People.PeopleSex.FEMALE));
-        peoples.add(new People("messi", 29, People.PeopleSex.MALE));
+        peoples.add(new People("mes", 29, People.PeopleSex.MALE));
 
 //        List<People> newList = new ArrayList<>();
 //        for(People p : peoples) {

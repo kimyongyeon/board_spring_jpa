@@ -9,6 +9,9 @@ spring:
 
  thymeleaf:
    cache: false
+ view:
+   prefix: /WEB-INF/jsp/
+   suffix: .jsp
 
 server:
   port: 8081

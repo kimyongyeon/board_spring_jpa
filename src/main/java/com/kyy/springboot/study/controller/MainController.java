@@ -39,6 +39,13 @@ public class MainController {
         return "index";
     }
 
+    @RequestMapping(value = "highchart")
+    public String hichart() {
+
+        return "highchart";
+    }
+
+
     @RequestMapping(value = "list/{id}")
     public String list(@PathVariable("id") long id) {
         return "board_list";

@@ -53,7 +53,9 @@ run{
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+//	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('javax.servlet:jstl')
+	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.projectlombok:lombok:1.16.8')
 	compile('org.lazyluke:log4jdbc-remix:0.2.7')
