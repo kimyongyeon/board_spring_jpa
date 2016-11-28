@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>highchart test</title>
+  <style>
+    #jb-container {
+      width: 90%;
+      margin: 4px auto;
+      padding: 20px;
+      border: 1px solid #bcbcbc;
+    }
+
+    #jb-header {
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #bcbcbc;
+    }
+
+    #jb-content {
+      width: 80%;
+      padding: 10px;
+      margin-bottom: 20px;
+      float: right;
+      border: 1px solid #bcbcbc;
+    }
+
+    #jb-sidebar {
+      width: 15%;
+      padding: 10px;
+      margin-bottom: 10px;
+      float: left;
+      border: 1px solid #bcbcbc;
+    }
+
+    #jb-footer {
+      clear: both;
+      padding: 20px;
+      border: 1px solid #bcbcbc;
+    }
+  </style>
+</head>
+
+<body bgcolor="gray">
+
+
+  <div id="jb-container">
+    <div id="jb-header">
+      <h1>지방의회 표준연계 API모니터링 시스템 </h1>
+    </div>
+
+    <div id="jb-sidebar">
+      <!-- <form id="s">
+			    <input type="search" id="q" />
+			    <button type="submit">Search</button>
+			  </form> -->
+      <div id="container">
+      </div>
+    </div>
+    <div id="jb-content">
+      <ul style="padding: 0px; margin: 0px;">
+        <li style="float: left; padding: 2px;">
+          <div id="chart_spline" style="width:35%; height: 40%;"></div>
+        </li>
+        <li style="float: left; padding: 2px;">
+          <div id="chart_cloumn" style="width:35%; height: 40%;"></div>
+        </li>
+        <li style="float: left; padding: 2px;">
+          <div id="chart_scatter" style="width:35%; height: 40%;"></div>
+        </li>
+        <li style="float: left; padding: 2px;">
+          <div id="chart_bar" style="width:35%; height: 40%;"></div>
+        </li>
+      </ul>
+      <div id="chart_cloumn2" style="width:98%; height: 40%; padding: 2px;"></div>
+    </div>
+
+    <div id="jb-footer">
+      <p>Copyright</p>
+    </div>
+  </div>
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/4.2.5/themes/dark-unica.js"></script>
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js"></script>
+
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    $(function() {
+      var arrayValue = [{
+        "text": "서울특별시의회"
+      }, {
+        "text": "부산광역시의회"
+      }, {
+        "text": "대구광역시의회"
+      }, {
+        "text": "인천광역시의회"
+      }, {
+        "text": "광주광역시의회"
+      }, {
+        "text": "대전광역시의회"
+      }, {
+        "text": "울산광역시의회"
+      }, ];
+      var arrayValue2 = [{
+        "text": "경기도부천시의회"
+      }, {
+        "text": "경기도하남시의회"
+      }, {
+        "text": "강원도강릉시의회"
+      }, {
+        "text": "충청북도청주시의회"
+      }, {
+        "text": "전라북도시의회"
+      }, {
+        "text": "전라남도시의회"
+      }, {
+        "text": "경상남도시의회"
+      }, ];
+      $(document).ready(function() {
+        $('#container').jstree({
+          "plugins": ["checkbox", "search"],
+          'core': {
+            'data': [{
+              "text": "의회",
+              "children": [{
+                "text": "광역의회",
+                "children": arrayValue
+              }, {
+                "text": "기초의회",
+                "children": arrayValue2
+              }, ]
+            }]
+          }
+        });
+
+        Highcharts.setOptions({
+          global: {
+            useUTC: false
+          }
+        });
+
+        var chart;
+        chart_spline('spline', '#chart_spline');
+        chartDraw('column', '#chart_cloumn');
+        chartDraw('scatter', '#chart_scatter');
+        chartDraw('bar', '#chart_bar');
+
+        function chart_spline(chart, chartid) {
+          $(function () {
+				        Highcharts.setOptions({
+				            global: {
+				                useUTC: false
+				            }
+				        });
+
+				        $('#chart_spline').highcharts({
+				            chart: {
+				                type: 'spline',
+				                animation: Highcharts.svg, // don't animate in old IE
+				                marginRight: 10,
+				                events: {
+				                    load: function () {
+
+				                        // set up the updating of the chart each second
+				                        var series = this.series[0];
+				                        setInterval(function () {
+				                            var x = (new Date()).getTime(), // current time
+				                                y = Math.random();
+				                            series.addPoint([x, y], true, true);
+				                        }, 1000);
+				                    }
+				                }
+				            },
+				            title: {
+				                text: 'CPU 점유율'
+				            },
+				            xAxis: {
+				                type: 'datetime',
+				                tickPixelInterval: 150
+				            },
+				            yAxis: {
+				                title: {
+				                    text: 'CPU',
+				                    rotation: '360'
+				                },
+				                plotLines: [{
+				                    value: 0,
+				                    width: 1,
+				                    color: '#808080'
+				                }]
+				            },
+				            tooltip: {
+				                formatter: function () {
+				                    return '<b>' + this.series.name + '</b><br/>' +
+				                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+				                        Highcharts.numberFormat(this.y, 2);
+				                }
+				            },
+				            // legend: {
+				            //     enabled: false
+				            // },
+				            exporting: {
+				                enabled: false
+				            },
+				            series: [{
+				                name: '메모리',
+				                data: (function () {
+				                    // generate an array of random data
+				                    var data = [],
+				                        time = (new Date()).getTime(),
+				                        i;
+
+				                    for (i = -19; i <= 0; i += 1) {
+				                        data.push({
+				                            x: time + i * 1000,
+				                            y: Math.random()
+				                        });
+				                    }
+				                    return data;
+				                }())
+				            }]
+				        });
+				    });
+        }
+
+        chart_cloumn();
+
+        function chart_cloumn() {
+          $(function() {
+            $('#chart_cloumn').highcharts({
+              chart: {
+                type: 'column'
+              },
+              title: {
+                text: '전체 평균 요청건수'
+              },
+              subtitle: {
+                text: '어제/오늘/주간/전체'
+              },
+              xAxis: {
+                categories: [
+                  '서울',
+                  '부산',
+                  '대구',
+                  '인천',
+                  '광주',
+                  '대전',
+                  '울산',
+                  '세종',
+                  '경기도',
+                  '전라북도',
+                  '전라남도',
+                  '제주'
+                ],
+                crosshair: true
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: '건수',
+                  rotation: 360,
+                }
+              },
+              tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                  '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+              },
+              plotOptions: {
+                column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+                }
+              },
+              series: [{
+                name: '어제',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+              }, {
+                name: '오늘',
+                data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+              }, {
+                name: '주간',
+                data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+              }, {
+                name: '전체',
+                data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+              }]
+            });
+          });
+        }
+        chart_cloumn2();
+
+        function chart_cloumn2() {
+          $(function() {
+            $('#chart_cloumn2').highcharts({
+              chart: {
+                type: 'column'
+              },
+              title: {
+                text: '데이터 수집 현황'
+              },
+              subtitle: {
+                text: '(단위:개)'
+              },
+              xAxis: {
+                categories: [
+                  '서울(2016.05.20)',
+                  '부산(2016.05.19)',
+                  '대구(2016.05.17)',
+                  '인천(2014.03.02)',
+                  '광주(2013.04.02)',
+                  '대전(2016.05.22)',
+                  '울산(2016.04.02)',
+                  '세종(2016.03.22)',
+                  '경기도(2016.01.22)',
+                  '전라북도(2016.02.03)',
+                  '전라남도(2016.07.02)',
+                  '제주(2016.02.02)'
+                ],
+                crosshair: true
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: '건수',
+                  rotation: 360,
+                }
+              },
+              tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                  '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+              },
+              plotOptions: {
+                column: {
+                  pointPadding: 0.2,
+                  borderWidth: 0
+                }
+              },
+              series: [{
+                name: '건수',
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+              }]
+            });
+          });
+        }
+        chart_scatter();
+
+        function chart_scatter() {
+          $(function() {
+            $('#chart_scatter').highcharts({
+              chart: {
+                type: 'scatter',
+                zoomType: 'xy'
+              },
+              title: {
+                text: '트랜잭션 뷰'
+              },
+              subtitle: {
+                text: '의회별 요청건수'
+              },
+              xAxis: {
+                crosshair: true,
+                title: {
+                  enabled: true,
+                  text: 'time'
+                },
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true
+              },
+              yAxis: {
+                title: {
+                  text: '요청건수',
+                  rotation: 360
+                }
+              },
+              // legend: {
+              // 	verticalAlign: 'top',
+              // 	x: 150,
+              // 	y: 0,
+              //   // layout: 'vertical',
+              //   // align: 'left',
+              //   verticalAlign: 'top',
+              //   // x: 100,
+              //   // y: 70,
+              //   floating: true,
+              //   backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+              //   borderWidth: 1
+              // },
+              plotOptions: {
+                scatter: {
+                  marker: {
+                    radius: 5,
+                    states: {
+                      hover: {
+                        enabled: true,
+                        lineColor: 'rgb(100,100,100)'
+                      }
+                    }
+                  },
+                  states: {
+                    hover: {
+                      marker: {
+                        enabled: false
+                      }
+                    }
+                  },
+                  tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x} cm, {point.y} kg'
+                  }
+                }
+              },
+              series: [{
+                  name: '서울',
+                  color: 'rgba(223, 83, 83, .5)',
+                  data: [
+                    [161.2, 51.6],
+                    [167.5, 59.0],
+                    [159.5, 49.2],
+                    [157.0, 63.0],
+                    [155.8, 53.6],
+                    [170.0, 59.0],
+                    [159.1, 47.6],
+                    [159.1, 47.6],
+                    [159.1, 47.6],
+                    [159.1, 47.6],
+                    [159.1, 47.6],
+                    [159.1, 47.6],
+                    [159.1, 47.6],
+                    [159.1, 47.6],
+                    [166.0, 69.8]
+                  ]
+
+                }, {
+                  name: '부산',
+                  color: 'rgba(119, 152, 191, .5)',
+                  data: [
+                    [174.0, 65.6],
+                    [175.3, 71.8],
+                    [193.5, 80.7],
+                    [186.5, 72.6],
+                    [187.2, 78.8]
+                  ]
+                }, {
+                  name: '광주',
+                  color: 'green',
+                  data: [
+                    [174.0, 65.7],
+                    [175.3, 91.8],
+                    [193.5, 80.7],
+                    [186.5, 72.6],
+                    [187.2, 78.8]
+                  ]
+                }
+
+              ]
+            });
+          });
+        }
+        chart_bar();
+
+        function chart_bar() {
+          $(function() {
+            $('#chart_bar').highcharts({
+              chart: {
+                type: 'bar'
+              },
+              title: {
+                text: '연계파일 저장용량 모니터링'
+              },
+              subtitle: {
+                text: '총사용량/사용량/남은용량'
+              },
+              xAxis: {
+                categories: ['/clik-cols', '/clik-data', '/clikapi-file/clik001'],
+                title: {
+                  text: null
+                }
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: 'MB',
+                  align: 'high'
+                },
+                labels: {
+                  overflow: 'justify'
+                }
+              },
+              tooltip: {
+                valueSuffix: ' millions'
+              },
+              plotOptions: {
+                bar: {
+                  dataLabels: {
+                    enabled: true
+                  }
+                }
+              },
+              // legend: {
+              // 	verticalAlign: 'top',
+              // 	x: 120,
+              // 	y: 100,
+              //   //layout: 'vertical',
+              //   //align: 'right',
+              //   //verticalAlign: 'top',
+              //   //x: -40,
+              //   //y: 80,
+              //   floating: true,
+              //   borderWidth: 1,
+              //   backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+              //   shadow: true
+              // },
+              credits: {
+                enabled: false
+              },
+              series: [{
+                name: '총용량',
+                data: [107, 31, 635]
+              }, {
+                name: '사용용량',
+                data: [133, 156, 947]
+              }, {
+                name: '남은 용량',
+                data: [1052, 954, 4250]
+              }]
+            });
+          });
+        }
+
+        function chartDraw(chart, chartid) {
+
+        }
+
+
+      });
+    });
+    /*]]>*/
+  </script>
+</body>
+
+</html>

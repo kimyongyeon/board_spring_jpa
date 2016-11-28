@@ -5,9 +5,12 @@ import com.kyy.springboot.study.service.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 /**
  * Created by yongyeonkim on 2016. 5. 29..
@@ -36,8 +39,15 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "list")
-    public String list() {
+    @RequestMapping(value = "highchart")
+    public String hichart() {
+
+        return "highchart";
+    }
+
+
+    @RequestMapping(value = "list/{id}")
+    public String list(@PathVariable("id") long id) {
         return "board_list";
     }
     @RequestMapping(value = "form")

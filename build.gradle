@@ -54,6 +54,11 @@ run{
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 //	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+<<<<<<< HEAD
+=======
+	compile('javax.servlet:jstl')
+	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
+>>>>>>> 8dcdb6bafe108dc87d4715a5d97e4aaff03f2bf4
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('javax.servlet:jstl')
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')

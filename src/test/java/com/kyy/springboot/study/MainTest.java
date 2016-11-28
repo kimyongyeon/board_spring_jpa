@@ -1,10 +1,20 @@
 package com.kyy.springboot.study;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+=======
+import com.kyy.springboot.study.domain.People;
+
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+>>>>>>> 8dcdb6bafe108dc87d4715a5d97e4aaff03f2bf4
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -19,12 +29,33 @@ import static java.util.stream.Collectors.groupingBy;
  */
 public class MainTest {
 
+<<<<<<< HEAD
     static class Transaction {
         String id;
 
         public String getId() {
             return id;
         }
+=======
+    public static void main(String[] args) throws IOException {
+
+        // file read
+        System.out.println(
+        Files.lines(Paths.get("/tmp/test.txt")).map(line -> line.split("[\\s]+"))
+                .flatMap(Arrays::stream)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList())
+        );
+
+
+        List<People> peoples = new ArrayList<>();
+        peoples.add(new People("roka", 29, People.PeopleSex.MALE));
+        peoples.add(new People("bob", 29, People.PeopleSex.MALE));
+        peoples.add(new People("jessy", 29, People.PeopleSex.FEMALE));
+        peoples.add(new People("katy", 29, People.PeopleSex.FEMALE));
+        peoples.add(new People("mes", 29, People.PeopleSex.MALE));
+>>>>>>> 8dcdb6bafe108dc87d4715a5d97e4aaff03f2bf4
 
         public void setId(String id) {
             this.id = id;

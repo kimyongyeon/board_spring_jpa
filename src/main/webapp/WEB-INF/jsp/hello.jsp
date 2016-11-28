@@ -11,4 +11,8 @@
 <h2>Hello! ${name}</h2>
 <div>JSP version</div>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 8dcdb6bafe108dc87d4715a5d97e4aaff03f2bf4

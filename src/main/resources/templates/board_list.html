@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="/bower_components/css/style.css" />
 
     <title>board list</title>
+
+    <style>
+        ul.ct {
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 <body>
     <h1>board list load test build test가 있네요?</h1>
@@ -29,6 +37,20 @@
             <td>1223</td>
         </tr>
     </table>
+
+    <ul class="pagination ct">
+        <li><a href="/ajaxTest?pageNo=1">1</a></li>
+        <li><a href="/ajaxTest?pageNo=2">2</a></li>
+        <li><a href="/ajaxTest?pageNo=3">3</a></li>
+        <li><a href="/ajaxTest?pageNo=4">4</a></li>
+        <li><a href="/ajaxTest?pageNo=5">5</a></li>
+        <li><a href="/ajaxTest?pageNo=6">6</a></li>
+        <li><a href="/ajaxTest?pageNo=7">7</a></li>
+        <li><a href="/ajaxTest?pageNo=8">8</a></li>
+        <li><a href="/ajaxTest?pageNo=9">9</a></li>
+        <li><a href="/ajaxTest?pageNo=10">10</a></li>
+    </ul>
+
     <script type="text/javascript">
         $(document).ready(function(){
            //alert("one");

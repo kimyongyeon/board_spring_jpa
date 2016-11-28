@@ -1,0 +1,14 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+</head>
+<body>
+    <h4 th:text="${exception.getMessage}">error</h4>
+    <ul th:each="stack : ${exception.getStackTrace()}">
+        <li th:text="${stack.toString()}"></li>
+    </ul>
+</body>
+</html>
