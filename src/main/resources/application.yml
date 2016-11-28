@@ -1,14 +1,16 @@
 spring:
-
  datasource:
    driverClassName: org.h2.Driver
-   url: jdbc:h2:file:/tmp/testdb
+   url: jdbc:h2:file:C:/tmp/testdb
    username: sa
    password:
    sql-script-encoding: UTF-8
 
  thymeleaf:
    cache: false
+ view:
+   prefix: /WEB-INF/jsp/
+   suffix: .jsp
 
 server:
   port: 8081
